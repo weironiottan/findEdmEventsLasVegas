@@ -1,3 +1,13 @@
-<h1>Welcome to your library project</h1>
-<p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script>
+import {SearchBar, EventTable} from "$lib";
+let { data } = $props();
+
+</script>
+
+<h1>Hello and welcome to my site!</h1>
+<a href="/about">About my site</a>
+<a href="/contact">Contact</a>
+
+<SearchBar/>
+<h3>Here starts the event table</h3>
+<EventTable {data}/>
