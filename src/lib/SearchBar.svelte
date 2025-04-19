@@ -2,19 +2,10 @@
 
 	let props = $props()
 	let selectedCategory = $state('artistName')
-	let searchQuery = $state('Enter Artist Name');
+	let searchQuery = $state('');
 </script>
 
-
-<div class="component-wrapper">
-	<div class="search-container">
-		<select name="eventSelection" id="event-selection" bind:value={selectedCategory}>
-			<option value="artistname">Artist Name</option>
-			<option value="clubname">Club Name</option>
-			<option value="date">Date</option>
-		</select>
-		<input type="text" id="search-input" placeholder="Search..." bind:value={searchQuery} />
-		<p>Search Results {searchQuery}</p>
-		<p>Search Category {selectedCategory}</p>
-	</div>
+<div class="relative w-7/12 backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl overflow-hidden z-10 flex ">
+	<input class="flex-1 font-bold  bg-transparent border-r border-white/20 text-white placeholder-white/60 " type="text" id="search-input" placeholder="Search for artists, venues..." bind:value={searchQuery} />
 </div>
+
