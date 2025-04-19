@@ -5,8 +5,6 @@
 
 </script>
 
-<p>Here goes the eventpage, This will contain the Event Data or atleast the box that contains it</p>
-
 {#if data.edmEvents}
     {#each data.edmEvents as edmEvent (edmEvent.Id)}
         <EventRow {edmEvent} />
