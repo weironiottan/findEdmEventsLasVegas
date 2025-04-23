@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { SearchBar } from '$lib';
 </script>
-<h1>Contact</h1>
-<p>TODO...</p>
-<a href="/">Home</a>
+<div class="h-screen bg-amber-900">
+    <div class="h-[20%] bg-blue-900">
+        <div class="h-[90%] bg-green-600"></div>
+    </div>
+
+</div>
