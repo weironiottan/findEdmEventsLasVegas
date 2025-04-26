@@ -12,7 +12,7 @@ let { data } = $props();
             <div class="absolute top-3/4 left-1/3 w-48 h-48 bg-purple-400 rounded-full blur-xl opacity-50"></div>
         </div>
 
-        <div class=" overflow-y-auto overscroll-contain backdrop-blur-xl h-[100%] bg-white/15 border border-white/30 rounded-xl p-6 z-10 ">
+        <div class=" overflow-y-auto overscroll-contain backdrop-blur-xl h-[100%] bg-white/15 border border-white/30 rounded-xl z-10 p-5 mt-2 ">
             <EventTable {data}/>-->
         </div>
     </div>
