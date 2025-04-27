@@ -1,6 +1,9 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+@plugin 'flowbite/plugin';
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer components {
     .edm-nights-text {
@@ -13,3 +16,5 @@
         @apply text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-purple-600 to-pink-500 [text-shadow:_0_1px_3px_rgb(0_0_0_/_40%)]
     }
 }
+
+@source "../node_modules/flowbite-svelte/dist";
