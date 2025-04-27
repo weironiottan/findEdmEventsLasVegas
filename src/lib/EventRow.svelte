@@ -13,8 +13,7 @@
     }
 
     function getFormattedDay(wholeDateStringUTC: Date) {
-        const currentDay = new Date(wholeDateStringUTC).getUTCDate()
-        return currentDay;
+        return new Date(wholeDateStringUTC).getUTCDate();
     }
 
     function getFormattedWeekday(wholeDateStringUTC: Date) {
@@ -25,8 +24,7 @@
     }
 
     function getFormattedYear(wholeDateStringUTC: Date) {
-        const currentYear = new Date(wholeDateStringUTC).getUTCFullYear()
-        return currentYear;
+        return new Date(wholeDateStringUTC).getUTCFullYear();
     }
 
 </script>
@@ -56,16 +54,9 @@
             <div class="clubName font-semibold text-xl tracking-wider capitalize">{edmEvent.ClubName}</div>
         </div>
         <div class="flex items-center justify-center">
-            <div class="backdrop-blur-xl bg-gradient-to-r from-cyan-500/80 to-purple-600/80 border
+            <a class="backdrop-blur-xl bg-gradient-to-r from-cyan-500/80 to-purple-600/80 border
             border-white/20 px-4 py-2 rounded-full  font-bold text-base transition-all
-            duration-300 hover:shadow-[0_0_15px_rgba(139,92,246,0.5)] hover:border-white/40">View Event</div>
+            duration-300 hover:shadow-[0_0_15px_rgba(139,92,246,0.5)] hover:border-white/40" 
+            href="{edmEvent.TicketUrl}" target="_blank">View Event</a>
         </div>
     </div>
-
-<!--<ul>-->
-<!--    <li>{edmEvent.Id}</li>-->
-<!--    <li>{edmEvent.ClubName}</li>-->
-<!--    <li>{edmEvent.ArtistName}</li>-->
-<!--    <li>{edmEvent.EventDate}</li>-->
-<!--    <li>{edmEvent.TicketUrl}</li>-->
-<!--</ul>-->
