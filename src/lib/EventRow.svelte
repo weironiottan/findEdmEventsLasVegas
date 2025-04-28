@@ -1,9 +1,7 @@
 <script lang="ts">
+    import { Months, Weekdays} from "$lib/Types";
 
-
-    import {Months, Weekdays} from "$lib/Models";
-
-    let { edmEvent } = $props();
+    let { edmEvent }  = $props();
 
     function getFormattedMonth(wholeDateStringUTC: Date) {
         const currentMonth = new Date(wholeDateStringUTC).getUTCMonth()
