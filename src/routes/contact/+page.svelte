@@ -2,7 +2,7 @@
 
 </script>
 <div class="bg-gradient-to-br h-[65%] w-full from-purple-900 via-indigo-900 to-black py-10 ">
-    <div class="relative  h-[100%] w-7xl mx-auto rounded-xl">
+    <div class="relative  h-[100%] md:w-7xl mx-auto rounded-xl">
         <div class="absolute -inset-6">
             <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-400 rounded-full blur-xl opacity-50"></div>
             <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-pink-400 rounded-full blur-xl opacity-50"></div>
