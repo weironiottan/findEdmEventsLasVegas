@@ -44,13 +44,18 @@
 
 </script>
 
-<div class="relative w-7/12 backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl z-10 flex ">
-	<div class=""><Button>{searchBarState.displayedText}<ChevronDownOutline class="w-6 h-6 ms-2 text-slate-200 font-bold" /></Button>
+<div class="flex flex-col w-full backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl z-10
+	md:flex-row md:w-7/12">
+	<div class="flex justify-center ">
+		<Button class="grow">{searchBarState.displayedText}
+			<ChevronDownOutline class="w-6 h-6 ms-2 text-slate-200 font-bold" />
+		</Button>
 		<Dropdown class="text-slate-600 " classContainer=" bg-white/80 w-48 p-3 space-y-1 " bind:open={searchBarState.dropDownOpen}>
 			<DropdownItem id={EdmEventInputId.artistName} class="font-extrabold" onclick={(e: Event) => getSelectedCategory(e)} >Artist Name</DropdownItem>
 			<DropdownItem id={EdmEventInputId.venue} class="font-extrabold" onclick={(e: Event) => getSelectedCategory(e)} >Venue</DropdownItem>
 			<DropdownItem id={EdmEventInputId.inputDate} class="font-extrabold" onclick={(e: Event) => getSelectedCategory(e)} >Date</DropdownItem>
-		</Dropdown></div>
+		</Dropdown>
+	</div>
 	<input class="flex-1 font-bold  bg-transparent border-r border-white/20 text-white placeholder-white/60 "
 		   type="text" id="search-input" placeholder="{searchBarState.placeHolderText}" bind:value={searchBarState.searchQuery} />
 </div>
