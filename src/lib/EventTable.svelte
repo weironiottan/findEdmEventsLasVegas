@@ -2,6 +2,7 @@
     import EventRow from "$lib/EventRow.svelte";
     import {getSearchQuery, getSelectedCategory} from "./sharedState.svelte";
     import {EdmEventInputId, type EdmEventInterface} from "$lib/Types";
+    import CircularBeatLoader from '$lib/CircularBeatLoader.svelte';
 
     let { data } = $props();
     const filterTextAccents = (searchQuery: string) => searchQuery.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -42,4 +43,6 @@
             <EventRow {edmEvent} />
         {/each}
     {/if}
+    {:else}
+        <CircularBeatLoader size={"large"} />
 {/if}

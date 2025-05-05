@@ -3,13 +3,17 @@
     import { page } from '$app/state';
     import {SearchBar} from "$lib";
     import type { LayoutProps } from './$types';
-    import { Button, Dropdown, DropdownItem, ToolbarButton, DropdownDivider } from 'flowbite-svelte';
-    import {ChevronLeftOutline, DotsHorizontalOutline, DotsVerticalOutline} from 'flowbite-svelte-icons';
-    import {EdmEventInputId} from "$lib/Types";
+    import { Button, Dropdown, DropdownItem} from 'flowbite-svelte';
+    import {ChevronLeftOutline} from 'flowbite-svelte-icons';
 
     let { children }: LayoutProps = $props();
 
 </script>
+
+<svelte:head>
+    <title>Find EDM Shows Las Vegas!</title>
+    <meta name="description" content="EDM Shows Las Vegas" />
+</svelte:head>
 
 <section class="bg-cover bg-center bg-no-repeat h-[35%] w-full flex flex-col justify-between " style:background-image="url('/edm-hero-background-1.avif')">
     <div class="backdrop-blur-md bg-white/10 border border-white/20 rounded-t-xl md:p-4
