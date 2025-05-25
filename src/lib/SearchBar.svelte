@@ -22,7 +22,6 @@
 				searchBarState.displayedText = "Artist Name";
 				searchBarState.inputId = EdmEventInputId.artistName;
 				searchBarState.placeHolderText = "Search for artists...";
-
 				break;
 			case EdmEventInputId.venue:
 				searchBarState.displayedText = "Venue";
@@ -37,14 +36,32 @@
 		}
 	}
 
+	let debounceTimer: number;
+
+	// Debounced search query effect
 	$effect(() => {
-		setSearchQuery(searchBarState.searchQuery);
+		searchBarState.searchQuery
+
+		clearTimeout(debounceTimer);
+		debounceTimer = setTimeout(() => {
+			setSearchQuery(searchBarState.searchQuery);
+		}, 400);
+
+		return () => clearTimeout(debounceTimer);
+
+	});
+
+	// Immediate category effect
+	$effect(() => {
 		setSelectedCategory(searchBarState.inputId);
 	});
 
+
+$inspect( searchBarState.searchQuery )
+
 </script>
 
-<div class="flex flex-col w-full backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl z-10
+<div class="flex flex-col w-full bg-white/10 border border-white/20 rounded-xl z-10
 	md:flex-row md:w-7/12">
 	<div class="flex justify-center ">
 		<Button class="grow">{searchBarState.displayedText}
@@ -56,7 +73,14 @@
 			<DropdownItem id={EdmEventInputId.inputDate} class="font-extrabold" onclick={(e: Event) => getSelectedCategory(e)} >Date</DropdownItem>
 		</Dropdown>
 	</div>
-	<input class="flex-1 font-bold  bg-transparent border-r border-white/20 text-white placeholder-white/60 "
-		   type="text" id="search-input" placeholder="{searchBarState.placeHolderText}" bind:value={searchBarState.searchQuery} />
-</div>
+	<input class="flex-1 font-bold  bg-transparent border-r border-white/20 text-white placeholder-white/60"
+		     type="text"
+			   id="search-input"
+				 autocomplete="off"
+				 autocapitalize="off"
+				 spellcheck="false"
+				 placeholder="{searchBarState.placeHolderText}"
+				 bind:value={ searchBarState.searchQuery }
+	/>
 
+</div>
