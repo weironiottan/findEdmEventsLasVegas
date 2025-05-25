@@ -35,10 +35,14 @@
         </div>
 
     </div>
+
     {#if page.route.id === "/"}
-    <section class=" z-10  mt-6  backdrop-blur-lg bg-white/10 border border-white/20 rounded-xl p-6 flex justify-center ">
-            <SearchBar />
-    </section>
+        <div class="mt-6 relative">
+            <div class="absolute inset-0 backdrop-blur-md bg-white/10 border border-white/20 rounded-xl"></div>  <!-- Background layer -->
+            <div class="relative z-10 p-6 flex justify-center">
+                <SearchBar />
+            </div>
+        </div>
     {/if}
 
 </section>
