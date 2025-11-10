@@ -15,7 +15,7 @@
     <meta name="description" content="EDM Shows Las Vegas" />
 </svelte:head>
 
-<section class="bg-cover bg-center bg-no-repeat h-[35%] w-full flex flex-col justify-between " style:background-image="url('/edm-hero-background-1.avif')">
+<section class="bg-cover bg-center bg-no-repeat h-[35%] w-full flex flex-col justify-between " style:background-image="url('/edm-hero-background-compressed.avif')">
     <div class="backdrop-blur-md bg-white/10 border border-white/20 rounded-t-xl md:p-4
     flex justify-end md:justify-center text-xl uppercase text-slate-200">
             <div class="px-4 cursor-pointer hidden md:flex "><a href="/about">about</a></div>

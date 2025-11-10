@@ -20,7 +20,7 @@
         </div>
         <div class="flex items-center order-first sm:order-none h-full w-full sm:w-2/5 pb-2 sm:pb-0">
             <div class="h-14 w-14 hidden md:flex rounded-full bg-cover bg-center bg-no-repeat p-4 m-2"
-                 style:background-image="url('/edm-hero-background-1.avif')"></div>
+                 style:background-image="url('/edm-hero-background-compressed.avif')"></div>
             <div class="text-3xl sm:text-2xl font-extrabold sm:font-bold tracking-wider capitalize sm:pl-5 ">{edmEvent.ArtistName}</div>
         </div>
         <div class="hidden md:flex clubName h-full w-1/5 items-center pl-5">
