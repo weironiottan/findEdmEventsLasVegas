@@ -1,5 +1,5 @@
 <script>
-	import { EventTable } from '$lib';
+	import { EventTable } from '#lib';
 	let { data } = $props();
 </script>
 

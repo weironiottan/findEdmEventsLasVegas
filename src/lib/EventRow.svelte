@@ -1,6 +1,6 @@
 <script lang="ts">
-	import EventDate from '$lib/EventDate.svelte';
-	import EventButton from '$lib/EventButton.svelte';
+	import EventDate from '#lib/EventDate.svelte';
+	import EventButton from '#lib/EventButton.svelte';
 
 	let { edmEvent } = $props();
 </script>

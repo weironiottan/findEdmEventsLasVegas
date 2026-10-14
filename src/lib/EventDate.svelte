@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Months, Weekdays } from '$lib/Types';
+	import { Months, Weekdays } from '#lib/Types.js';
 	let { edmEvent } = $props();
 
 	function getFormattedMonth(wholeDateStringUTC: Date) {

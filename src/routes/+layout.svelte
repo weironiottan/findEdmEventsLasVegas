@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import { page } from '$app/state';
-	import { SearchBar } from '$lib';
+	import { SearchBar } from '#lib';
 	import type { LayoutProps } from './$types';
 	import { Button, Dropdown, DropdownItem } from 'flowbite-svelte';
 	import { ChevronLeftOutline } from 'flowbite-svelte-icons';

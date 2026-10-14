@@ -1,8 +1,8 @@
 <script lang="ts">
-	import EventRow from '$lib/EventRow.svelte';
+	import EventRow from '#lib/EventRow.svelte';
 	import { getSearchQuery, getSelectedCategory } from './sharedState.svelte';
-	import { EdmEventInputId, type EdmEventInterface } from '$lib/Types';
-	import CircularBeatLoader from '$lib/CircularBeatLoader.svelte';
+	import { EdmEventInputId, type EdmEventInterface } from '#lib/Types.js';
+	import CircularBeatLoader from '#lib/CircularBeatLoader.svelte';
 
 	let { data } = $props();
 	const filterTextAccents = (searchQuery: string) =>

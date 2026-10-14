@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { Button, Dropdown, DropdownItem } from 'flowbite-svelte';
 	import { ChevronDownOutline } from 'flowbite-svelte-icons';
-	import { setSearchQuery, setSelectedCategory } from '$lib/sharedState.svelte';
-	import { EdmEventInputId } from '$lib/Types';
+	import { setSearchQuery, setSelectedCategory } from '#lib/sharedState.svelte.js';
+	import { EdmEventInputId } from '#lib/Types.js';
 
 	let searchBarState = $state({
 		displayedText: 'Artist Name',

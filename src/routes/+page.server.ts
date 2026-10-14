@@ -1,6 +1,6 @@
 import type { PageServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
-import type { EdmEventInterface } from '$lib/Types';
+import type { EdmEventInterface } from '#lib/Types.js';
 
 export const load: PageServerLoad = async ({ fetch }) => {
 	const response: Response = await fetch(
