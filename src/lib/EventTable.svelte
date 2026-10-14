@@ -13,7 +13,7 @@
 		return artistName.includes(searchQuery);
 	}
 
-	function filterEvents(edmEvents: [EdmEventInterface], searchQuery: string) {
+	function filterEvents(edmEvents: EdmEventInterface[], searchQuery: string) {
 		let filteredEdmEventsData: EdmEventInterface[] = [];
 
 		switch (getSelectedCategory()) {

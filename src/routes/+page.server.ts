@@ -10,7 +10,7 @@ export const load: PageServerLoad = async ({ fetch }) => {
 		return error(response.status, response.statusText);
 	}
 
-	const edmEvents: [EdmEventInterface] = await response.json();
+	const edmEvents: EdmEventInterface[] = await response.json();
 	// Used for debugging code so we don't needlessly make a fetch request
 	// const edmEvents = edmEventsJSON;
 	return { edmEvents: edmEvents };
