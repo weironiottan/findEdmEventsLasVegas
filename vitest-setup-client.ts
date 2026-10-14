@@ -15,4 +15,12 @@ Object.defineProperty(window, 'matchMedia', {
 	}))
 });
 
+// required for svelte transitions as jsdom does not support the Web Animations API
+Element.prototype.animate = vi.fn().mockImplementation(() => ({
+	cancel: vi.fn(),
+	finish: vi.fn(),
+	onfinish: null,
+	finished: Promise.resolve()
+}));
+
 // add more mocks here if you need them
