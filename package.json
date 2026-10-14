@@ -74,7 +74,7 @@
 		"svelte"
 	],
 	"engines": {
-		"node": "^22.22.2 || >=24.15.0"
+		"node": "24.x"
 	},
 	"imports": {
 		"#lib": "./src/lib/index.js",
