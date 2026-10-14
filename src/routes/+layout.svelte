@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import { page } from '$app/state';
+	import { resolve } from '$app/paths';
 	import { SearchBar } from '#lib';
 	import type { LayoutProps } from './$types';
 	import { Button, Dropdown, DropdownItem } from 'flowbite-svelte';
@@ -22,9 +23,9 @@
 		class="flex justify-end rounded-t-xl border border-white/20 bg-white/10
     text-xl text-slate-200 uppercase backdrop-blur-md md:justify-center md:p-4"
 	>
-		<div class="hidden cursor-pointer px-4 md:flex"><a href="/about">about</a></div>
-		<div class="hidden cursor-pointer px-6 md:flex"><a href="/">find EDM shows</a></div>
-		<div class="hidden cursor-pointer px-4 md:flex"><a href="/contact">contact</a></div>
+		<div class="hidden cursor-pointer px-4 md:flex"><a href={resolve('/about')}>about</a></div>
+		<div class="hidden cursor-pointer px-6 md:flex"><a href={resolve('/')}>find EDM shows</a></div>
+		<div class="hidden cursor-pointer px-4 md:flex"><a href={resolve('/contact')}>contact</a></div>
 
 		<div class="flex text-2xl font-extrabold md:hidden">
 			<Button class="text-xl">
@@ -32,9 +33,15 @@
 				Menu
 			</Button>
 			<Dropdown placement="left" class="mt-2 w-48 bg-white/80 text-slate-600">
-				<DropdownItem class="font-extrabold uppercase"><a href="/about">about</a></DropdownItem>
-				<DropdownItem class="font-extrabold uppercase"><a href="/">find EDM shows</a></DropdownItem>
-				<DropdownItem class="font-extrabold uppercase"><a href="/contact">contact</a></DropdownItem>
+				<DropdownItem class="font-extrabold uppercase"
+					><a href={resolve('/about')}>about</a></DropdownItem
+				>
+				<DropdownItem class="font-extrabold uppercase"
+					><a href={resolve('/')}>find EDM shows</a></DropdownItem
+				>
+				<DropdownItem class="font-extrabold uppercase"
+					><a href={resolve('/contact')}>contact</a></DropdownItem
+				>
 			</Dropdown>
 		</div>
 	</div>

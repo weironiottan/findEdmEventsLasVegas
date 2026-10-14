@@ -38,11 +38,11 @@
 
 	// Debounced search query effect
 	$effect(() => {
-		searchBarState.searchQuery;
+		const searchQuery = searchBarState.searchQuery;
 
 		clearTimeout(debounceTimer);
 		debounceTimer = setTimeout(() => {
-			setSearchQuery(searchBarState.searchQuery);
+			setSearchQuery(searchQuery);
 		}, 400);
 
 		return () => clearTimeout(debounceTimer);
@@ -52,8 +52,6 @@
 	$effect(() => {
 		setSelectedCategory(searchBarState.inputId);
 	});
-
-	$inspect(searchBarState.searchQuery);
 </script>
 
 <div

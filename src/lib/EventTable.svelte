@@ -52,5 +52,5 @@
 		{/each}
 	{/if}
 {:else}
-	<CircularBeatLoader size={'large'} />
+	<CircularBeatLoader size="large" />
 {/if}

@@ -1,4 +1,4 @@
-let searchPropsState = $state({
+const searchPropsState = $state({
 	searchQuery: '',
 	selectedCategory: ''
 });

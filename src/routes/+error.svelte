@@ -1,8 +1,4 @@
 <script>
-	let { data } = $props();
-	import { page } from '$app/state';
-	$inspect(page.error);
-
 	const funnyServerErrorMessages = [
 		"Looks like our server decided to take an unscheduled coffee break. We're sending it back to work!",
 		"Server's having an existential crisis. It's wondering if it's really a server or just a fancy calculator.",
