@@ -1,37 +1,35 @@
 <script lang="ts">
 	import { Button, Dropdown, DropdownItem } from 'flowbite-svelte';
 	import { ChevronDownOutline } from 'flowbite-svelte-icons';
-	import {setSearchQuery, setSelectedCategory} from "$lib/sharedState.svelte";
-	import {EdmEventInputId} from "$lib/Types";
-
+	import { setSearchQuery, setSelectedCategory } from '#lib/sharedState.svelte.js';
+	import { EdmEventInputId } from '#lib/Types.js';
 
 	let searchBarState = $state({
-		displayedText: "Artist Name",
-		inputId: "artistName",
-		placeHolderText: "Search for artists...",
-		searchQuery: "",
-		dropDownOpen: false,
-	})
+		displayedText: 'Artist Name',
+		inputId: 'artistName',
+		placeHolderText: 'Search for artists...',
+		searchQuery: '',
+		dropDownOpen: false
+	});
 
-	function getSelectedCategory(e : Event) {
-
+	function getSelectedCategory(e: Event) {
 		const value = e.target as HTMLInputElement;
-		searchBarState.dropDownOpen = false
+		searchBarState.dropDownOpen = false;
 		switch (value.id) {
 			case EdmEventInputId.artistName:
-				searchBarState.displayedText = "Artist Name";
+				searchBarState.displayedText = 'Artist Name';
 				searchBarState.inputId = EdmEventInputId.artistName;
-				searchBarState.placeHolderText = "Search for artists...";
+				searchBarState.placeHolderText = 'Search for artists...';
 				break;
 			case EdmEventInputId.venue:
-				searchBarState.displayedText = "Venue";
+				searchBarState.displayedText = 'Venue';
 				searchBarState.inputId = EdmEventInputId.venue;
-				searchBarState.placeHolderText = "Search for venue...";
+				searchBarState.placeHolderText = 'Search for venue...';
 				break;
 			case EdmEventInputId.inputDate:
-				searchBarState.displayedText = "Date";
-				searchBarState.inputId =  EdmEventInputId.inputDate;
-				searchBarState.placeHolderText = "Search for dates...";
+				searchBarState.displayedText = 'Date';
+				searchBarState.inputId = EdmEventInputId.inputDate;
+				searchBarState.placeHolderText = 'Search for dates...';
 				break;
 		}
 	}
@@ -40,47 +38,60 @@
 
 	// Debounced search query effect
 	$effect(() => {
-		searchBarState.searchQuery
+		const searchQuery = searchBarState.searchQuery;
 
 		clearTimeout(debounceTimer);
 		debounceTimer = setTimeout(() => {
-			setSearchQuery(searchBarState.searchQuery);
+			setSearchQuery(searchQuery);
 		}, 400);
 
 		return () => clearTimeout(debounceTimer);
-
 	});
 
 	// Immediate category effect
 	$effect(() => {
 		setSelectedCategory(searchBarState.inputId);
 	});
-
-
-$inspect( searchBarState.searchQuery )
-
 </script>
 
-<div class="flex flex-col w-full bg-white/10 border border-white/20 rounded-xl z-10
-	md:flex-row md:w-7/12">
-	<div class="flex justify-center ">
-		<Button class="grow">{searchBarState.displayedText}
-			<ChevronDownOutline class="w-6 h-6 ms-2 text-slate-200 font-bold" />
+<div
+	class="z-10 flex w-full flex-col rounded-xl border border-white/20 bg-white/10
+	md:w-7/12 md:flex-row"
+>
+	<div class="flex justify-center">
+		<Button class="grow"
+			>{searchBarState.displayedText}
+			<ChevronDownOutline class="ms-2 h-6 w-6 font-bold text-slate-200" />
 		</Button>
-		<Dropdown class="text-slate-600 " classContainer=" bg-white/80 w-48 p-3 space-y-1 " bind:open={searchBarState.dropDownOpen}>
-			<DropdownItem id={EdmEventInputId.artistName} class="font-extrabold" onclick={(e: Event) => getSelectedCategory(e)} >Artist Name</DropdownItem>
-			<DropdownItem id={EdmEventInputId.venue} class="font-extrabold" onclick={(e: Event) => getSelectedCategory(e)} >Venue</DropdownItem>
-			<DropdownItem id={EdmEventInputId.inputDate} class="font-extrabold" onclick={(e: Event) => getSelectedCategory(e)} >Date</DropdownItem>
+		<Dropdown
+			class="w-48 space-y-1 bg-white/80 p-3 text-slate-600"
+			bind:isOpen={searchBarState.dropDownOpen}
+		>
+			<DropdownItem
+				id={EdmEventInputId.artistName}
+				class="font-extrabold"
+				onclick={(e: Event) => getSelectedCategory(e)}>Artist Name</DropdownItem
+			>
+			<DropdownItem
+				id={EdmEventInputId.venue}
+				class="font-extrabold"
+				onclick={(e: Event) => getSelectedCategory(e)}>Venue</DropdownItem
+			>
+			<DropdownItem
+				id={EdmEventInputId.inputDate}
+				class="font-extrabold"
+				onclick={(e: Event) => getSelectedCategory(e)}>Date</DropdownItem
+			>
 		</Dropdown>
 	</div>
-	<input class="flex-1 font-bold  bg-transparent border-r border-white/20 text-white placeholder-white/60"
-		     type="text"
-			   id="search-input"
-				 autocomplete="off"
-				 autocapitalize="off"
-				 spellcheck="false"
-				 placeholder="{searchBarState.placeHolderText}"
-				 bind:value={ searchBarState.searchQuery }
+	<input
+		class="flex-1 border-r border-white/20 bg-transparent font-bold text-white placeholder-white/60"
+		type="text"
+		id="search-input"
+		autocomplete="off"
+		autocapitalize="off"
+		spellcheck="false"
+		placeholder={searchBarState.placeHolderText}
+		bind:value={searchBarState.searchQuery}
 	/>
-
 </div>
