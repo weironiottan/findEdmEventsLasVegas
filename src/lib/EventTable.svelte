@@ -5,12 +5,14 @@
 	import CircularBeatLoader from '#lib/CircularBeatLoader.svelte';
 
 	let { data } = $props();
-	const filterTextAccents = (searchQuery: string) =>
-		searchQuery.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+	const normalizeSearchText = (text: string) =>
+		text
+			.normalize('NFD')
+			.replace(/[\u0300-\u036f]/g, '')
+			.toLowerCase();
 
-	function filterArtistNames(artistName: string, searchQuery: string): Boolean {
-		artistName = filterTextAccents(artistName);
-		return artistName.includes(searchQuery);
+	function matchesSearchQuery(text: string, searchQuery: string): boolean {
+		return normalizeSearchText(text).includes(normalizeSearchText(searchQuery));
 	}
 
 	function filterEvents(edmEvents: EdmEventInterface[], searchQuery: string) {
@@ -19,13 +21,13 @@
 		switch (getSelectedCategory()) {
 			case EdmEventInputId.artistName:
 				filteredEdmEventsData = edmEvents.filter((edmEvent: EdmEventInterface) =>
-					filterArtistNames(edmEvent.ArtistName, searchQuery)
+					matchesSearchQuery(edmEvent.ArtistName, searchQuery)
 				);
 				break;
 
 			case EdmEventInputId.venue:
 				filteredEdmEventsData = edmEvents.filter((edmEvent: EdmEventInterface) =>
-					edmEvent.ClubName.includes(searchQuery)
+					matchesSearchQuery(edmEvent.ClubName, searchQuery)
 				);
 				break;
 

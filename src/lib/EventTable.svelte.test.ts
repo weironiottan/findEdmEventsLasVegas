@@ -77,6 +77,30 @@ describe('EventTable.svelte', () => {
 		expect(renderedArtists()).toEqual(['tiësto']);
 	});
 
+	test('matches artist names when the query has accents', () => {
+		render(EventTable, { props: { data: { edmEvents } } });
+
+		search(EdmEventInputId.artistName, 'tiësto');
+
+		expect(renderedArtists()).toEqual(['tiësto']);
+	});
+
+	test('ignores case in artist names', () => {
+		render(EventTable, { props: { data: { edmEvents } } });
+
+		search(EdmEventInputId.artistName, 'John Summit');
+
+		expect(renderedArtists()).toEqual(['john summit']);
+	});
+
+	test('ignores case in venues', () => {
+		render(EventTable, { props: { data: { edmEvents } } });
+
+		search(EdmEventInputId.venue, 'XS');
+
+		expect(renderedArtists()).toEqual(['john summit']);
+	});
+
 	test('filters by venue', () => {
 		render(EventTable, { props: { data: { edmEvents } } });
 
