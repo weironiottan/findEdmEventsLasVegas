@@ -15,12 +15,21 @@ Object.defineProperty(window, 'matchMedia', {
 	}))
 });
 
-// required for svelte transitions as jsdom does not support the Web Animations API
-Element.prototype.animate = vi.fn().mockImplementation(() => ({
-	cancel: vi.fn(),
-	finish: vi.fn(),
-	onfinish: null,
-	finished: Promise.resolve()
-}));
+// required for svelte transitions as jsdom does not support the Web Animations API.
+// Animations finish on the next tick so outro transitions can remove their elements.
+Element.prototype.animate = function () {
+	const animation = {
+		cancel: () => {},
+		finish: () => {},
+		onfinish: null as (() => void) | null,
+		finished: Promise.resolve()
+	};
+	setTimeout(() => animation.onfinish?.());
+	return animation as unknown as Animation;
+};
+
+// required for flowbite-svelte dropdowns as jsdom does not support the Popover API
+HTMLElement.prototype.showPopover = () => {};
+HTMLElement.prototype.hidePopover = () => {};
 
 // add more mocks here if you need them

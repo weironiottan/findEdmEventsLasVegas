@@ -23,7 +23,7 @@
 	};
 
 	// Get the right sizes based on prop
-	const sizes = sizeMap[size] || sizeMap.medium;
+	const sizes = sizeMap[/** @type {keyof typeof sizeMap} */ (size)] || sizeMap.medium;
 </script>
 
 <div class="flex flex-col items-center justify-center">

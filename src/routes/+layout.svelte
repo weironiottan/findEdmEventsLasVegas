@@ -31,7 +31,7 @@
 				<ChevronLeftOutline class="ms-2 h-6 w-6 font-bold text-slate-200" />
 				Menu
 			</Button>
-			<Dropdown placement="left" class="text-slate-600" classContainer="bg-white/80 mt-2 w-48 ">
+			<Dropdown placement="left" class="mt-2 w-48 bg-white/80 text-slate-600">
 				<DropdownItem class="font-extrabold uppercase"><a href="/about">about</a></DropdownItem>
 				<DropdownItem class="font-extrabold uppercase"><a href="/">find EDM shows</a></DropdownItem>
 				<DropdownItem class="font-extrabold uppercase"><a href="/contact">contact</a></DropdownItem>

@@ -1,6 +1,6 @@
 import { describe, test, expect, beforeEach, afterEach, vi } from 'vitest';
 import '@testing-library/jest-dom/vitest';
-import { fireEvent, render, screen } from '@testing-library/svelte';
+import { fireEvent, render, screen, waitFor } from '@testing-library/svelte';
 import SearchBar from './SearchBar.svelte';
 import {
 	getSearchQuery,
@@ -68,5 +68,9 @@ describe('SearchBar.svelte', () => {
 
 		expect(screen.getByPlaceholderText(placeholder)).toBeInTheDocument();
 		expect(getSelectedCategory()).toBe(category);
+		// Selecting a category closes the menu
+		await waitFor(() =>
+			expect(document.getElementById(EdmEventInputId.artistName)).not.toBeInTheDocument()
+		);
 	});
 });

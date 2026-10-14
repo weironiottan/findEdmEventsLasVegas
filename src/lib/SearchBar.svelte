@@ -66,9 +66,8 @@
 			<ChevronDownOutline class="ms-2 h-6 w-6 font-bold text-slate-200" />
 		</Button>
 		<Dropdown
-			class="text-slate-600 "
-			classContainer=" bg-white/80 w-48 p-3 space-y-1 "
-			bind:open={searchBarState.dropDownOpen}
+			class="w-48 space-y-1 bg-white/80 p-3 text-slate-600"
+			bind:isOpen={searchBarState.dropDownOpen}
 		>
 			<DropdownItem
 				id={EdmEventInputId.artistName}
