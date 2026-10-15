@@ -7,3 +7,6 @@ bun.lockb
 
 # Data
 src/lib/edmEvents.json
+
+# Design prototype (reference only)
+docs/next-phase/prototype/

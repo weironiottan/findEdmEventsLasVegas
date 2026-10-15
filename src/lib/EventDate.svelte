@@ -1,37 +1,17 @@
 <script lang="ts">
 	import { Months, Weekdays } from '#lib/Types.js';
-	let { edmEvent } = $props();
+	let { eventDate }: { eventDate: string } = $props();
 
-	function getFormattedMonth(wholeDateStringUTC: Date) {
-		const currentMonth = new Date(wholeDateStringUTC).getUTCMonth();
-		return Months.find((month, index) => {
-			return index === currentMonth && month;
-		});
-	}
-
-	function getFormattedDay(wholeDateStringUTC: Date) {
-		return new Date(wholeDateStringUTC).getUTCDate();
-	}
-
-	function getFormattedWeekday(wholeDateStringUTC: Date) {
-		const currentWeekday = new Date(wholeDateStringUTC).getUTCDay();
-		return Weekdays.find((weekday, index) => {
-			return index === currentWeekday && weekday;
-		});
-	}
-
-	function getFormattedYear(wholeDateStringUTC: Date) {
-		return new Date(wholeDateStringUTC).getUTCFullYear();
-	}
+	const date = $derived(new Date(eventDate));
 </script>
 
 <div class="flex flex-col">
 	<div class="flex text-2xl font-bold sm:text-3xl sm:font-extrabold">
-		<div class="mr-3">{getFormattedMonth(edmEvent.EventDate)}</div>
-		<div class="">{getFormattedDay(edmEvent.EventDate)}</div>
+		<div class="mr-3">{Months[date.getUTCMonth()]}</div>
+		<div class="">{date.getUTCDate()}</div>
 	</div>
 	<div class="flex items-baseline">
-		<div class="mr-3 font-medium">{getFormattedWeekday(edmEvent.EventDate)}</div>
-		<div class="text-sm">{getFormattedYear(edmEvent.EventDate)}</div>
+		<div class="mr-3 font-medium">{Weekdays[date.getUTCDay()]}</div>
+		<div class="text-sm">{date.getUTCFullYear()}</div>
 	</div>
 </div>

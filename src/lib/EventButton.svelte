@@ -1,11 +1,10 @@
 <script lang="ts">
-	let { edmEvent } = $props();
+	import Arrow from '#lib/Arrow.svelte';
+	let { ticketUrl }: { ticketUrl: string } = $props();
 </script>
 
-<a
-	class="rounded-full border border-white/20 bg-gradient-to-r from-cyan-500/80
-            to-purple-600/80 px-4 py-2 text-base font-bold backdrop-blur-xl transition-all
-            duration-300 hover:border-white/40 hover:shadow-[0_0_15px_rgba(139,92,246,0.5)]"
-	href={edmEvent.TicketUrl}
-	target="_blank">View Event</a
->
+<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external club ticketing site -->
+<a class="pill-frosted shrink-0" href={ticketUrl} target="_blank" rel="noreferrer">
+	View event
+	<Arrow direction="up-right" />
+</a>
