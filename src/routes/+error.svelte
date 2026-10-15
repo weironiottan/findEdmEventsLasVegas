@@ -18,6 +18,11 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Page not available · Find EDM Shows Las Vegas</title>
+	<meta name="robots" content="noindex" />
+</svelte:head>
+
 <Hero />
 
 <PageBody>

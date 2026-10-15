@@ -9,9 +9,11 @@
 		PageBody,
 		Panel,
 		SearchBar,
+		Seo,
 		VenueCard
 	} from '#lib';
 	import { countVenues, groupArtists, groupVenues, matchesSearchQuery } from '#lib/browse.js';
+	import { SITE_NAME } from '#lib/seo.js';
 	import { getSearchQuery } from '#lib/sharedState.svelte.js';
 	import type { VenueKind } from '#lib/Types.js';
 	import type { PageProps } from './$types';
@@ -53,6 +55,17 @@
 	const pillClass = (active: boolean) =>
 		`${active ? 'pill-active' : 'pill-dark'} min-h-11 font-bold uppercase transition-all duration-300 hover:border-white/40 hover:text-white hover:shadow-[0_0_15px_rgba(139,92,246,0.5)]`;
 </script>
+
+<Seo
+	title="{SITE_NAME} · EDM Club Calendar"
+	description="Every upcoming EDM show at Las Vegas nightclubs and dayclubs — Omnia, XS, Zouk, Marquee, Encore Beach Club and more. Browse by date, artist or venue, updated daily."
+	jsonLd={{
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: SITE_NAME,
+		url: page.url.origin
+	}}
+/>
 
 <Hero>
 	<div class="flex flex-col items-center gap-5 pt-14 pb-6 text-center">

@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import { Arrow, DetailEventRow, FilterChips, Hero, PageBody, Panel } from '#lib';
+	import { Arrow, DetailEventRow, FilterChips, Hero, PageBody, Panel, Seo } from '#lib';
 	import { formatLongDate } from '#lib/browse.js';
+	import { SITE_NAME, musicEventJsonLd, titleCase } from '#lib/seo.js';
 	import { getVenueByClubName } from '#lib/venues.js';
 	import type { PageProps } from './$types';
 
@@ -16,9 +17,16 @@
 	);
 </script>
 
-<svelte:head>
-	<title>{artist.name} in Las Vegas · Find EDM Shows Las Vegas</title>
-</svelte:head>
+<Seo
+	title="{titleCase(artist.name)} Las Vegas Shows · {SITE_NAME}"
+	description="{titleCase(artist.name)} has {artist.events.length} upcoming Las Vegas {artist.events
+		.length === 1
+		? 'date'
+		: 'dates'}, next on {formatLongDate(next.eventDate)} at {venueName(
+		next.clubName
+	)}. See every date and venue with ticket links."
+	jsonLd={artist.events.map(musicEventJsonLd)}
+/>
 
 <Hero>
 	<div class="flex flex-col gap-[18px] pt-2">

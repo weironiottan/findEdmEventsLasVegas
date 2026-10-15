@@ -5,11 +5,6 @@
 	let { children }: LayoutProps = $props();
 </script>
 
-<svelte:head>
-	<title>Find EDM Shows Las Vegas!</title>
-	<meta name="description" content="EDM Shows Las Vegas" />
-</svelte:head>
-
 <div
 	class="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-black text-slate-200 antialiased"
 >

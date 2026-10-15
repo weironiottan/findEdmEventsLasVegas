@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import { Arrow, DetailEventRow, FilterChips, Hero, PageBody, Panel } from '#lib';
+	import { Arrow, DetailEventRow, FilterChips, Hero, PageBody, Panel, Seo } from '#lib';
 	import { formatLongDate, formatMonthDay } from '#lib/browse.js';
+	import { SITE_NAME, musicEventJsonLd } from '#lib/seo.js';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
@@ -15,9 +16,14 @@
 	);
 </script>
 
-<svelte:head>
-	<title>{venue.name} schedule · Find EDM Shows Las Vegas</title>
-</svelte:head>
+<Seo
+	title="{venue.name} Schedule · {SITE_NAME}"
+	description="Upcoming DJs and events at {venue.name} at {venue.resort}, Las Vegas. See the full {venue.kind ===
+	'night'
+		? 'nightclub'
+		: 'dayclub'} lineup with dates and ticket links."
+	jsonLd={events.map(musicEventJsonLd)}
+/>
 
 <Hero>
 	<div class="flex flex-col gap-[18px] pt-2">

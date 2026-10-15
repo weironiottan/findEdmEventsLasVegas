@@ -10,3 +10,4 @@ export { default as ChatRail } from './ChatRail.svelte';
 export { default as FilterChips } from './FilterChips.svelte';
 export { default as DetailEventRow } from './DetailEventRow.svelte';
 export { default as Arrow } from './Arrow.svelte';
+export { default as Seo } from './Seo.svelte';
