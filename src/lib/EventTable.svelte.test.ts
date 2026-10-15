@@ -3,134 +3,90 @@ import '@testing-library/jest-dom/vitest';
 import { render, screen } from '@testing-library/svelte';
 import { flushSync } from 'svelte';
 import EventTable from './EventTable.svelte';
-import { setSearchQuery, setSelectedCategory } from './sharedState.svelte';
-import { EdmEventInputId, type EdmEventInterface } from './Types';
+import { setSearchQuery } from './sharedState.svelte';
+import { testEvent } from '../test/testEvents';
 
-const edmEvents: EdmEventInterface[] = [
-	{
-		Id: '1',
-		ClubName: 'hakkasan nightclub',
-		ArtistName: 'tiësto',
-		EventDate: '2025-04-10T00:00:00Z',
-		TicketUrl: 'https://example.com/1'
-	},
-	{
-		Id: '2',
-		ClubName: 'xs nightclub',
-		ArtistName: 'john summit',
-		EventDate: '2025-05-02T00:00:00Z',
-		TicketUrl: 'https://example.com/2'
-	},
-	{
-		Id: '3',
-		ClubName: 'omnia',
-		ArtistName: 'fisher',
-		EventDate: '2025-05-03T00:00:00Z',
-		TicketUrl: 'https://example.com/3'
-	}
+const edmEvents = [
+	testEvent('hakkasan nightclub', 'tiësto', '2025-04-10T00:00:00Z'),
+	testEvent('xs nightclub', 'john summit', '2025-05-02T00:00:00Z'),
+	testEvent('omnia', 'fisher', '2025-05-03T00:00:00Z'),
+	testEvent('marquee nightclub', 'kaskade', '2025-05-30T00:00:00Z'),
+	testEvent('jewel nightclub', 'mark knight', '2025-09-05T00:00:00Z')
 ];
 
-function search(category: EdmEventInputId, query: string) {
-	setSelectedCategory(category);
+const allTitles = ['tiësto', 'john summit', 'fisher', 'kaskade', 'mark knight'];
+
+function search(query: string) {
 	setSearchQuery(query);
 	flushSync();
 }
 
-function renderedArtists() {
-	return edmEvents
-		.map((edmEvent) => edmEvent.ArtistName)
-		.filter((artistName) => screen.queryByText(artistName));
+function renderedTitles() {
+	return edmEvents.map((edmEvent) => edmEvent.title).filter((title) => screen.queryByText(title));
 }
 
 describe('EventTable.svelte', () => {
 	beforeEach(() => {
 		setSearchQuery('');
-		setSelectedCategory(EdmEventInputId.artistName);
 	});
 
 	test('shows the loader while there are no events', () => {
-		render(EventTable, { props: { data: {} } });
+		render(EventTable, { props: {} });
 
 		expect(screen.getByText('Fetching Edm Events...')).toBeInTheDocument();
 	});
 
 	test('renders every event when there is no search query', () => {
-		render(EventTable, { props: { data: { edmEvents } } });
+		render(EventTable, { props: { edmEvents } });
 
-		expect(renderedArtists()).toEqual(['tiësto', 'john summit', 'fisher']);
+		expect(renderedTitles()).toEqual(allTitles);
 		expect(screen.queryByText('Fetching Edm Events...')).not.toBeInTheDocument();
 	});
 
-	test('filters by artist name', () => {
-		render(EventTable, { props: { data: { edmEvents } } });
+	test.each([
+		['summit', ['john summit']],
+		['John Summit', ['john summit']],
+		['tiesto', ['tiësto']],
+		['tiësto', ['tiësto']],
+		['XS', ['john summit']],
+		['nightclub', ['tiësto', 'john summit', 'kaskade', 'mark knight']],
+		['2025-05', ['john summit', 'fisher', 'kaskade']],
+		['2025-05-03', ['fisher']],
+		['may 3', ['fisher']],
+		['May 3rd', ['fisher']],
+		['may 30', ['kaskade']],
+		['5/3', ['fisher']],
+		['05/03/2025', ['fisher']],
+		['5/3/24', []],
+		['sat, may 3', ['fisher']],
+		['september 5', ['mark knight']],
+		['sept', ['mark knight']],
+		['saturday', ['fisher']],
+		// A lone month abbreviation also matches names starting with it
+		['mar', ['kaskade', 'mark knight']]
+	])('filters by "%s"', (query, expected) => {
+		render(EventTable, { props: { edmEvents } });
 
-		search(EdmEventInputId.artistName, 'summit');
+		search(query);
 
-		expect(renderedArtists()).toEqual(['john summit']);
+		expect(renderedTitles()).toEqual(expected);
 	});
 
-	test('ignores accents in artist names', () => {
-		render(EventTable, { props: { data: { edmEvents } } });
+	test('says so when no events match', () => {
+		render(EventTable, { props: { edmEvents } });
 
-		search(EdmEventInputId.artistName, 'tiesto');
+		search('nobody');
 
-		expect(renderedArtists()).toEqual(['tiësto']);
-	});
-
-	test('matches artist names when the query has accents', () => {
-		render(EventTable, { props: { data: { edmEvents } } });
-
-		search(EdmEventInputId.artistName, 'tiësto');
-
-		expect(renderedArtists()).toEqual(['tiësto']);
-	});
-
-	test('ignores case in artist names', () => {
-		render(EventTable, { props: { data: { edmEvents } } });
-
-		search(EdmEventInputId.artistName, 'John Summit');
-
-		expect(renderedArtists()).toEqual(['john summit']);
-	});
-
-	test('ignores case in venues', () => {
-		render(EventTable, { props: { data: { edmEvents } } });
-
-		search(EdmEventInputId.venue, 'XS');
-
-		expect(renderedArtists()).toEqual(['john summit']);
-	});
-
-	test('filters by venue', () => {
-		render(EventTable, { props: { data: { edmEvents } } });
-
-		search(EdmEventInputId.venue, 'nightclub');
-
-		expect(renderedArtists()).toEqual(['tiësto', 'john summit']);
-	});
-
-	test('filters by date', () => {
-		render(EventTable, { props: { data: { edmEvents } } });
-
-		search(EdmEventInputId.inputDate, '2025-05');
-
-		expect(renderedArtists()).toEqual(['john summit', 'fisher']);
-	});
-
-	test('renders nothing when no events match', () => {
-		render(EventTable, { props: { data: { edmEvents } } });
-
-		search(EdmEventInputId.artistName, 'nobody');
-
-		expect(renderedArtists()).toEqual([]);
+		expect(renderedTitles()).toEqual([]);
+		expect(screen.getByText('No shows match “nobody”.')).toBeInTheDocument();
 	});
 
 	test('shows every event again when the query is cleared', () => {
-		render(EventTable, { props: { data: { edmEvents } } });
+		render(EventTable, { props: { edmEvents } });
 
-		search(EdmEventInputId.artistName, 'fisher');
-		search(EdmEventInputId.artistName, '');
+		search('fisher');
+		search('');
 
-		expect(renderedArtists()).toEqual(['tiësto', 'john summit', 'fisher']);
+		expect(renderedTitles()).toEqual(allTitles);
 	});
 });

@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EDM Vegas — Shows</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#000}
+a{color:#67e8f9}a:hover{color:#a5f3fc}
+.hero{position:relative;isolation:isolate;padding-bottom:72px !important;margin-bottom:-40px}.hero::before{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(to bottom,rgba(0,0,0,0.45),rgba(0,0,0,0.05) 35%),url(/_blob/81f58da856b478a94d1c471e5bad2769);background-size:cover;background-position:center;-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 45%,rgba(0,0,0,0.6) 70%,transparent 100%);mask-image:linear-gradient(to bottom,#000 0%,#000 45%,rgba(0,0,0,0.6) 70%,transparent 100%)}
+.hero-dot{background-image:url(/_blob/81f58da856b478a94d1c471e5bad2769);background-size:cover;background-position:center}
+.grad{background:linear-gradient(to right,#22d3ee,#a855f7,#ec4899);-webkit-background-clip:text;background-clip:text;color:transparent}
+.glass{backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
+.glass-sm{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.row{transition:transform .5s ease,background-color .5s ease,border-color .5s ease}
+.row:hover{transform:translateY(-4px);border-color:rgba(6,182,212,.3);background-color:rgba(255,255,255,.15)}
+.btn{transition:box-shadow .3s ease,border-color .3s ease}
+.btn:hover{border-color:rgba(255,255,255,.4);box-shadow:0 0 15px rgba(139,92,246,.5);color:#fff}
+input::placeholder{color:rgba(255,255,255,.6)}
+</style>
+</helmet>
+<div style="min-height: 1080px; background: linear-gradient(to bottom right, #581c87, #312e81, #000000); color: #e2e8f0; font-family: ui-sans-serif, system-ui, sans-serif; -webkit-font-smoothing: antialiased; box-sizing: border-box">
+
+  <section class="hero" style="padding: 0 0 28px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 24px; padding: 12px 28px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; text-shadow: 0 1px 3px rgba(0,0,0,0.6)">
+      <p style="margin: 0; display: inline-flex; align-items: center; gap: 8px; min-height: 32px; box-sizing: border-box; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.2); background: rgba(15,10,35,0.55); color: rgba(226,232,240,0.9); text-shadow: none"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 8px rgba(74,222,128,0.8)"></span>Shows updated [last_updated]</p>
+      <nav aria-label="Primary" style="display: flex; gap: 10px">
+        <a href="#" class="btn" style="color: rgba(226,232,240,0.9); text-decoration: none; min-height: 40px; box-sizing: border-box; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.2); background: rgba(15,10,35,0.55); text-shadow: none; display: inline-flex; align-items: center">about</a>
+        <a href="#" class="btn" style="color: rgba(226,232,240,0.9); text-decoration: none; min-height: 40px; box-sizing: border-box; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.2); background: rgba(15,10,35,0.55); text-shadow: none; display: inline-flex; align-items: center">contact</a>
+      </nav>
+    </div>
+
+    <div style="max-width: 1280px; margin: 28px auto 0; padding: 0 24px; box-sizing: border-box">
+      <div style="padding: 32px 0 24px; display: flex; flex-direction: column; gap: 20px; align-items: center">
+        <h1 class="grad" style="margin: 0; font-size: 52px; font-weight: 800; letter-spacing: -0.01em; text-shadow: none">Find EDM Shows Las Vegas</h1>
+        <div role="tablist" aria-label="Browse by" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px">
+          <sc-for list="{{tabs}}" as="t" hint-placeholder-count="3">
+            <button role="tab" class="btn" onClick="{{t.pick}}" style="{{t.style}}">{{t.label}}<span style="font-size: 13px; font-weight: 600; opacity: 0.75">{{t.count}}</span></button>
+          </sc-for>
+        </div>
+        <div style="display: flex; width: 100%; max-width: 720px; border: 1px solid rgba(255,255,255,0.25); border-radius: 12px; background: rgba(15,10,35,0.7); overflow: hidden">
+          <label for="q" style="position: absolute; left: -9999px">Search</label>
+          <input id="q" placeholder="{{placeholder}}" style="flex: 1 1 auto; min-height: 48px; box-sizing: border-box; background: transparent; border: 0; color: #ffffff; padding: 0 16px; font: inherit; font-size: 16px; font-weight: 700">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="position: relative; max-width: 1280px; margin: 0 auto; padding: 32px 24px 56px; box-sizing: border-box">
+    <div aria-hidden="true" style="position: absolute; inset: 0; overflow: hidden; pointer-events: none">
+      <div style="position: absolute; top: 12%; left: 22%; width: 256px; height: 256px; border-radius: 50%; background: #22d3ee; opacity: 0.5; filter: blur(24px)"></div>
+      <div style="position: absolute; bottom: 18%; right: 30%; width: 320px; height: 320px; border-radius: 50%; background: #f472b6; opacity: 0.5; filter: blur(24px)"></div>
+      <div style="position: absolute; top: 62%; left: 30%; width: 192px; height: 192px; border-radius: 50%; background: #c084fc; opacity: 0.5; filter: blur(24px)"></div>
+    </div>
+
+    <div style="position: relative; display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start">
+
+      <main class="glass" style="flex: 999 1 640px; min-width: 0; border: 1px solid rgba(255,255,255,0.3); border-radius: 12px; background: rgba(255,255,255,0.15); padding: 20px; box-sizing: border-box">
+
+        <sc-if value="{{showDates}}" hint-placeholder-val="{{true}}">
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <sc-for list="{{events}}" as="e" hint-placeholder-count="8">
+              <div class="row glass" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding: 14px 16px; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; background: rgba(255,255,255,0.1); text-transform: capitalize">
+                <div style="flex: 0 0 120px">
+                  <div style="font-size: 28px; font-weight: 800; display: flex; gap: 10px"><span>{{e.mon}}</span><span>{{e.day}}</span></div>
+                  <div style="display: flex; align-items: baseline; gap: 10px"><span style="font-weight: 500">{{e.wd}}</span><span style="font-size: 14px">2026</span></div>
+                </div>
+                <div style="flex: 1 1 240px; min-width: 0; display: flex; align-items: center; gap: 14px">
+                  <div class="hero-dot" aria-hidden="true" style="flex: 0 0 56px; height: 56px; border-radius: 50%"></div>
+                  <div style="font-size: 24px; font-weight: 700; letter-spacing: 0.05em">{{e.artist}}</div>
+                </div>
+                <div style="flex: 0 1 220px; font-size: 19px; font-weight: 600; letter-spacing: 0.05em">{{e.venue}}</div>
+                <a class="btn" href="{{e.url}}" style="min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; gap: 8px; padding: 0 16px; border: 1px solid rgba(255,255,255,0.2); border-radius: 999px; background: rgba(255,255,255,0.1); color: #e2e8f0; text-decoration: none; font-size: 14px; font-weight: 700; text-transform: none">View event
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg>
+                </a>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{showArtists}}" hint-placeholder-val="{{false}}">
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px">
+            <sc-for list="{{artists}}" as="a" hint-placeholder-count="6">
+              <article class="row" style="border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; background: rgba(255,255,255,0.1); padding: 18px; display: flex; flex-direction: column; gap: 10px">
+                <div style="display: flex; align-items: center; gap: 12px">
+                  <div class="hero-dot" aria-hidden="true" style="flex: 0 0 48px; height: 48px; border-radius: 50%"></div>
+                  <h3 style="margin: 0; font-size: 22px; font-weight: 800; letter-spacing: 0.04em; text-transform: capitalize">{{a.name}}</h3>
+                </div>
+                <div style="font-size: 15px">Next: <strong>{{a.next}}</strong> · {{a.venue}}</div>
+                <a class="btn" href="{{a.href}}" aria-label="All {{a.count}} dates for {{a.name}}" style="align-self: flex-start; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; gap: 8px; padding: 0 16px; border: 1px solid rgba(255,255,255,0.2); border-radius: 999px; background: rgba(255,255,255,0.1); color: #e2e8f0; text-decoration: none; font-size: 14px; font-weight: 700">{{a.count}} dates
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+                </a>
+              </article>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{showVenues}}" hint-placeholder-val="{{false}}">
+          <div role="group" aria-label="Club type" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px">
+            <sc-for list="{{kinds}}" as="k" hint-placeholder-count="2">
+              <button class="btn" aria-pressed="{{k.pressed}}" onClick="{{k.pick}}" style="{{k.style}}">{{k.label}}<span style="font-size: 13px; opacity: 0.8">{{k.count}}</span></button>
+            </sc-for>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px">
+            <sc-for list="{{venueCards}}" as="v" hint-placeholder-count="6">
+              <article class="row" style="border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; background: rgba(255,255,255,0.1); padding: 18px; display: flex; flex-direction: column; gap: 14px">
+                <div>
+                  <h3 style="margin: 0; font-size: 22px; font-weight: 800; letter-spacing: 0.03em; text-transform: capitalize">{{v.name}}</h3>
+                  <div style="font-size: 14px; margin-top: 2px; opacity: 0.85">{{v.resort}}</div>
+                </div>
+                <div>
+                  <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; opacity: 0.85">Coming up</div>
+                  <div style="display: flex; flex-direction: column; gap: 4px">
+                    <sc-for list="{{v.next}}" as="n" hint-placeholder-count="3">
+                      <div style="display: flex; gap: 12px; font-size: 15px"><span style="flex: 0 0 92px; font-weight: 700">{{n.d}}</span><span style="text-transform: capitalize">{{n.a}}</span></div>
+                    </sc-for>
+                  </div>
+                </div>
+                <sc-if value="{{v.hasRegs}}" hint-placeholder-val="{{true}}">
+                  <div>
+                    <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; opacity: 0.85">Regulars</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px">
+                      <sc-for list="{{v.regs}}" as="r" hint-placeholder-count="3">
+                        <span style="font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.25); background: rgba(15,10,35,0.5); text-transform: capitalize">{{r.a}} ×{{r.n}}</span>
+                      </sc-for>
+                    </div>
+                  </div>
+                </sc-if>
+                <a class="btn" href="{{v.href}}" aria-label="Full schedule for {{v.name}}" style="align-self: flex-start; margin-top: auto; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; gap: 8px; padding: 0 16px; border: 1px solid rgba(255,255,255,0.2); border-radius: 999px; background: rgba(255,255,255,0.1); color: #e2e8f0; text-decoration: none; font-size: 14px; font-weight: 700">Full schedule
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+                </a>
+              </article>
+            </sc-for>
+          </div>
+        </sc-if>
+      </main>
+
+      <aside aria-label="Assistant" class="glass" style="flex: 1 1 320px; max-width: 400px; border: 1px solid rgba(255,255,255,0.3); border-radius: 12px; background: rgba(255,255,255,0.15); display: flex; flex-direction: column; min-height: 560px">
+        <div style="padding: 18px 20px; border-bottom: 1px solid rgba(255,255,255,0.2); display: flex; justify-content: space-between; align-items: center; gap: 12px">
+          <div>
+            <div class="grad" style="font-weight: 800; font-size: 24px">Ask the lineup</div>
+            <div style="font-size: 14px; margin-top: 2px">Answers from the same show data</div>
+          </div>
+          <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1)">Soon</span>
+        </div>
+        <div style="flex: 1 1 auto; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+          <div style="font-size: 14px; margin-bottom: 4px">Try asking</div>
+          <sc-for list="{{prompts}}" as="p" hint-placeholder-count="3">
+            <button class="btn" style="text-align: left; min-height: 44px; padding: 10px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: #e2e8f0; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer">{{p}}</button>
+          </sc-for>
+        </div>
+        <div style="padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.2); display: flex; gap: 10px">
+          <label for="chat" style="position: absolute; left: -9999px">Message</label>
+          <input id="chat" disabled placeholder="Who's playing Saturday?" style="flex: 1 1 auto; min-height: 44px; box-sizing: border-box; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; color: #ffffff; padding: 0 12px; font: inherit; font-size: 15px">
+          <button class="btn" disabled aria-label="Send" style="width: 44px; height: 44px; box-sizing: border-box; border-radius: 999px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: #e2e8f0; display: inline-flex; align-items: center; justify-content: center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+          </button>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"startTab":{"editor":"enum","options":["dates","artists","venues"],"default":"dates"},"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const tab = (this.state && this.state.tab) || this.props.startTab || 'dates';
+    const T = 'https://taogroup.com/event/';
+    const ev = (mon, day, wd, artist, venue, url) => ({ mon, day, wd, artist, venue, url });
+    const events = [
+      ev('oct', 16, 'friday', 'tiësto', 'liv las vegas', 'https://speakeasygo.com/liv-nightclub-las-vegas/event?eid=EVE-3VYHJJ'),
+      ev('oct', 16, 'friday', 'steve aoki', 'omnia nightclub', T + '10-16-2026-steve-aoki-omnia/'),
+      ev('oct', 16, 'friday', 'deadmau5', 'encore beach club at night', 'https://www.wynnsocial.com/event/EVE116300020261016/deadmau5/'),
+      ev('oct', 16, 'friday', 'deorro', 'marquee nightclub', T + '10-16-2026-marquee-nightclub-friday-marquee-nightclub/'),
+      ev('oct', 16, 'friday', 'ydg', 'ayu dayclub', 'https://zoukgrouplv.com/event/EVE60374500020261016/ydg/'),
+      ev('oct', 17, 'saturday', 'the chainsmokers', 'encore beach club at night', 'https://www.wynnsocial.com/event/EVE116300020261017/the-chainsmokers/'),
+      ev('oct', 17, 'saturday', 'zedd', 'omnia nightclub', T + '10-17-2026-steve-aoki-omnia/'),
+      ev('oct', 17, 'saturday', 'alesso', 'omnia dayclub', T + '10-17-2026-omnia-dayclub-saturday-omnia-dayclub/'),
+      ev('oct', 17, 'saturday', 'danny avila', 'marquee nightclub', T + '10-17-2026-marquee-nightclub-saturday-marquee-nightclub/'),
+      ev('oct', 17, 'saturday', 'cloonee', 'liv las vegas', 'https://speakeasygo.com/liv-nightclub-las-vegas/event?eid=EVE-PT343F')
+    ];
+    const artists = [
+      { name: 'steve aoki', count: 9, next: 'Oct 16', venue: 'Omnia' },
+      { name: 'alesso', count: 6, next: 'Oct 17', venue: 'Omnia Dayclub' },
+      { name: 'diplo', count: 6, next: 'Oct 17', venue: 'Encore Beach Club' },
+      { name: 'the chainsmokers', count: 5, next: 'Oct 17', venue: 'EBC at Night' },
+      { name: 'martin garrix', count: 5, next: 'Oct 31', venue: 'Omnia' },
+      { name: 'tiësto', count: 4, next: 'Oct 16', venue: 'LIV' },
+      { name: 'hugel', count: 4, next: 'Oct 23', venue: 'EBC at Night' },
+      { name: 'zedd', count: 3, next: 'Oct 17', venue: 'Omnia' },
+      { name: 'illenium', count: 3, next: 'Oct 17', venue: 'Omnia Dayclub' }
+    ].map((a) => ({ ...a, href: a.name === 'steve aoki' ? 'Artist.dc.html' : '#' }));
+    const kind = (this.state && this.state.kind) || 'night';
+    const n = (d, a) => ({ d, a });
+    const r = (a, c) => ({ a, n: c });
+    const vc = (k, name, resort, next, regs, href) => ({ k, name, resort, next, regs, hasRegs: regs.length > 0, href: href || '#' });
+    const allVenues = [
+      vc('night', 'omnia nightclub', 'Caesars Palace', [n('Fri Oct 16', 'steve aoki'), n('Sat Oct 17', 'zedd'), n('Tue Oct 20', 'mikey francis')], [r('steve aoki', 7), r('alesso', 5), r('zedd', 3)], 'Venue.dc.html'),
+      vc('night', 'marquee nightclub', 'The Cosmopolitan', [n('Wed Oct 14', 'lincoln jesser'), n('Fri Oct 16', 'deorro'), n('Sat Oct 17', 'danny avila')], [r('lema', 5), r('justin credible', 2), r('escobar', 2)]),
+      vc('night', 'hakkasan nightclub', 'MGM Grand', [n('Wed Oct 14', 'dj franzen'), n('Thu Oct 15', 'dj tay james'), n('Fri Oct 16', 'dj five')], [r('dj franzen', 16), r('tyga', 4)]),
+      vc('night', 'tao nightclub', 'The Venetian', [n('Thu Oct 15', 'j-nice'), n('Fri Oct 16', 'dj cla'), n('Sat Oct 17', 'spydat.e.k')], [r('dj franzen', 6), r('dj cla', 4), r('beatbreaker', 3)]),
+      vc('night', 'liv las vegas', 'Fontainebleau', [n('Thu Oct 15', 'beltran'), n('Fri Oct 16', 'tiësto'), n('Sat Oct 17', 'cloonee')], [r('tiësto', 2), r('kettama', 2), r('sidepiece', 2)]),
+      vc('night', 'xs nightclub', 'Wynn', [n('Thu Nov 5', 'rüfüs du sol (dj set)'), n('Fri Nov 6', 'the chainsmokers'), n('Sat Nov 7', 'calvin harris')], [r('calvin harris', 3), r('diplo', 3), r('the chainsmokers', 2)]),
+      vc('night', 'encore beach club at night', 'Encore', [n('Wed Oct 14', 'bunt.'), n('Thu Oct 15', 'odd mob'), n('Fri Oct 16', 'deadmau5')], [r('the chainsmokers', 3), r('hugel', 2)]),
+      vc('night', 'jewel nightclub', 'Aria', [n('Fri Oct 16', 'dj lucky lou'), n('Sat Oct 17', 'dj shift'), n('Fri Oct 23', 'd-miles')], [r('dj lucky lou', 2), r('dj shift', 2)]),
+      vc('night', 'zouk nightclub', 'Resorts World', [n('Thu Oct 15', 'level up'), n('Fri Nov 6', 'loe shimmy'), n('Sat Nov 7', 'noizu')], []),
+      vc('day', 'marquee dayclub', 'The Cosmopolitan', [n('Fri Oct 16', '15grams'), n('Sat Oct 17', 'bijou'), n('Sun Oct 18', 'dj spider')], [r('martin garrix', 2), r('party pupils', 2), r('crespo', 2)]),
+      vc('day', 'omnia dayclub', 'Caesars Palace', [n('Fri Oct 16', 'mk'), n('Fri Oct 16', 'twinsick'), n('Sat Oct 17', 'alesso')], []),
+      vc('day', 'encore beach club', 'Encore', [n('Fri Oct 16', 'gryffin'), n('Sat Oct 17', 'diplo'), n('Sat Oct 24', 'loud luxury')], []),
+      vc('day', 'palm tree beach club', 'MGM Grand', [n('Wed Oct 14', 'dj lucky lou'), n('Thu Oct 15', 'dj mondo'), n('Fri Oct 16', 'dj e-rock')], []),
+      vc('day', 'ayu dayclub', 'Resorts World', [n('Fri Oct 16', 'ydg')], [])
+    ];
+    const venues = allVenues;
+    const base = 'min-height: 44px; padding: 0 22px; border-radius: 999px; font: inherit; font-size: 17px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; color: #e2e8f0; border: 1px solid rgba(255,255,255,0.2);';
+    const on = base + ' background: linear-gradient(to right, rgba(6,182,212,0.8), rgba(147,51,234,0.8));';
+    const off = base + ' background: rgba(15,10,35,0.6);';
+    const mk = (id, label, count) => ({ label, count, style: tab === id ? on : off, pick: () => this.setState({ tab: id }) });
+    return {
+      tabs: [mk('dates', 'Dates', ''), mk('artists', 'Artists', artists.length), mk('venues', 'Venues', venues.length)],
+      showDates: tab === 'dates', showArtists: tab === 'artists', showVenues: tab === 'venues',
+      placeholder: tab === 'dates' ? 'Search for dates...' : tab === 'artists' ? 'Search for artists...' : 'Search for venue...',
+      events, artists, venues,
+      venueCards: allVenues.filter((v) => v.k === kind),
+      kinds: [['night', 'Nightclubs'], ['day', 'Dayclubs']].map(([id, label]) => ({
+        label, count: allVenues.filter((v) => v.k === id).length,
+        pressed: kind === id ? 'true' : 'false',
+        style: (kind === id ? on : off).replace('font-size: 17px', 'font-size: 15px'),
+        pick: () => this.setState({ kind: id })
+      })),
+      prompts: ["Who's playing Halloween weekend?", 'When is Martin Garrix next in town?', "What's on at Omnia this Saturday?"]
+    };
+  }
+}
+</script>
+</body>
+</html>

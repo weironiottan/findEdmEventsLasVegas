@@ -8,14 +8,14 @@ const edmEvents: EdmEventInterface[] = [
 	{
 		Id: '1',
 		ClubName: 'hakkasan nightclub',
-		ArtistName: 'lavern',
+		ArtistName: 'lavern - halloween weekend',
 		EventDate: '2025-04-10T00:00:00Z',
 		TicketUrl: 'https://example.com/1'
 	}
 ];
 
 describe('/+page.server.ts load', () => {
-	test('returns the events from the API', async () => {
+	test('returns the normalized events from the API', async () => {
 		const fetch = vi.fn().mockResolvedValue(Response.json(edmEvents));
 
 		const result = await load({ fetch } as unknown as LoadEvent);
@@ -23,7 +23,21 @@ describe('/+page.server.ts load', () => {
 		expect(fetch).toHaveBeenCalledWith(
 			'https://edm-events-las-vegas-api-223895091580.us-central1.run.app/find-edm/all-events'
 		);
-		expect(result).toEqual({ edmEvents });
+		expect(result).toEqual({
+			edmEvents: [
+				{
+					id: '1',
+					clubName: 'hakkasan nightclub',
+					clubSlug: 'hakkasan-nightclub',
+					title: 'lavern - halloween weekend',
+					artist: 'lavern',
+					artistSlug: 'lavern',
+					tag: 'halloween weekend',
+					eventDate: '2025-04-10T00:00:00Z',
+					ticketUrl: 'https://example.com/1'
+				}
+			]
+		});
 	});
 
 	test('throws an HTTP error with the API status when the request fails', async () => {

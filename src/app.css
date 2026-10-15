@@ -15,6 +15,43 @@
 	.edm-nights-text-with-shadow {
 		@apply bg-gradient-to-r from-cyan-500 via-purple-600 to-pink-500 bg-clip-text text-3xl font-bold text-transparent [text-shadow:_0_1px_3px_rgb(0_0_0_/_40%)];
 	}
+
+	/* Hero image that dissolves into the page gradient; content below overlaps the fade */
+	.hero {
+		@apply relative isolate -mb-10 pb-[72px];
+	}
+	.hero::before {
+		@apply absolute inset-0 -z-10 bg-cover bg-center;
+		content: '';
+		background-image:
+			linear-gradient(to bottom, rgb(0 0 0 / 45%), rgb(0 0 0 / 5%) 35%),
+			url('/edm-hero-background-compressed.avif');
+		mask-image: linear-gradient(to bottom, #000 45%, rgb(0 0 0 / 60%) 70%, transparent);
+	}
+	.hero-avatar {
+		@apply shrink-0 rounded-full bg-cover bg-center;
+		background-image: url('/edm-hero-background-compressed.avif');
+	}
+
+	/* Pill system: frosted = actions, dark violet = inactive/labels, gradient = "you are here" */
+	.pill-glow {
+		@apply transition-all duration-300 hover:border-white/40 hover:text-white hover:shadow-[0_0_15px_rgba(139,92,246,0.5)];
+	}
+	.pill-frosted {
+		@apply inline-flex min-h-11 items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 text-sm font-bold text-slate-200 normal-case transition-all duration-300 hover:border-white/40 hover:text-white hover:shadow-[0_0_15px_rgba(139,92,246,0.5)];
+	}
+	.pill-dark {
+		@apply inline-flex items-center gap-2 rounded-full border border-white/20 bg-[rgba(15,10,35,0.6)] text-slate-200;
+	}
+	.pill-active {
+		@apply inline-flex items-center gap-2 rounded-full border border-white/20 bg-gradient-to-r from-cyan-500/80 to-purple-600/80 text-slate-200;
+	}
+	.tag-pill {
+		@apply self-start rounded-full border border-white/25 bg-[rgba(15,10,35,0.5)] px-2.5 py-0.5 text-[13px] font-bold tracking-wide;
+	}
+	.text-shadow-hero {
+		text-shadow: 0 1px 3px rgb(0 0 0 / 60%);
+	}
 }
 
 @source '../node_modules/flowbite-svelte/dist';

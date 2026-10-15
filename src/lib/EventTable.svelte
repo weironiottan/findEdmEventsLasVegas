@@ -1,56 +1,48 @@
 <script lang="ts">
 	import EventRow from '#lib/EventRow.svelte';
-	import { getSearchQuery, getSelectedCategory } from './sharedState.svelte';
-	import { EdmEventInputId, type EdmEventInterface } from '#lib/Types.js';
+	import { getSearchQuery } from './sharedState.svelte';
+	import type { EdmEvent } from '#lib/Types.js';
 	import CircularBeatLoader from '#lib/CircularBeatLoader.svelte';
+	import { matchesDateQuery, matchesSearchQuery, monthName, parseDateQuery } from '#lib/browse.js';
+	import { Months, Weekdays } from '#lib/Types.js';
 
-	let { data } = $props();
-	const normalizeSearchText = (text: string) =>
-		text
-			.normalize('NFD')
-			.replace(/[\u0300-\u036f]/g, '')
-			.toLowerCase();
+	let { edmEvents }: { edmEvents?: EdmEvent[] } = $props();
 
-	function matchesSearchQuery(text: string, searchQuery: string): boolean {
-		return normalizeSearchText(text).includes(normalizeSearchText(searchQuery));
+	// Free text: title, venue, weekday and month as shown on the row ("sept", "friday")
+	function searchableText(edmEvent: EdmEvent) {
+		const date = new Date(edmEvent.eventDate);
+		return [
+			edmEvent.title,
+			edmEvent.clubName,
+			Weekdays[date.getUTCDay()],
+			Months[date.getUTCMonth()],
+			monthName(edmEvent.eventDate)
+		].join(' ');
 	}
 
-	function filterEvents(edmEvents: EdmEventInterface[], searchQuery: string) {
-		let filteredEdmEventsData: EdmEventInterface[] = [];
+	const dateQuery = $derived(parseDateQuery(getSearchQuery()));
 
-		switch (getSelectedCategory()) {
-			case EdmEventInputId.artistName:
-				filteredEdmEventsData = edmEvents.filter((edmEvent: EdmEventInterface) =>
-					matchesSearchQuery(edmEvent.ArtistName, searchQuery)
-				);
-				break;
-
-			case EdmEventInputId.venue:
-				filteredEdmEventsData = edmEvents.filter((edmEvent: EdmEventInterface) =>
-					matchesSearchQuery(edmEvent.ClubName, searchQuery)
-				);
-				break;
-
-			case EdmEventInputId.inputDate:
-				filteredEdmEventsData = edmEvents.filter((edmEvent: EdmEventInterface) =>
-					edmEvent.EventDate.includes(searchQuery)
-				);
-				break;
-		}
-		return filteredEdmEventsData;
+	function matches(edmEvent: EdmEvent, searchQuery: string) {
+		if (dateQuery && matchesDateQuery(edmEvent.eventDate, dateQuery)) return true;
+		// A specific date ("oct 1") must match exactly, so "oct 1" doesn't also match Oct 10-19.
+		// A lone month word ("mar") may still be the start of a venue or artist name.
+		if (dateQuery && (dateQuery.day !== undefined || dateQuery.year !== undefined)) return false;
+		return matchesSearchQuery(searchableText(edmEvent), searchQuery);
 	}
+
+	const filteredEvents = $derived(
+		getSearchQuery()
+			? (edmEvents ?? []).filter((edmEvent) => matches(edmEvent, getSearchQuery()))
+			: (edmEvents ?? [])
+	);
 </script>
 
-{#if data.edmEvents}
-	{#if getSearchQuery()}
-		{#each filterEvents(data.edmEvents, getSearchQuery()) as edmEvent (edmEvent.Id)}
-			<EventRow {edmEvent} />
-		{/each}
+{#if edmEvents}
+	{#each filteredEvents as edmEvent (edmEvent.id)}
+		<EventRow {edmEvent} />
 	{:else}
-		{#each data.edmEvents as edmEvent (edmEvent.Id)}
-			<EventRow {edmEvent} />
-		{/each}
-	{/if}
+		<p class="p-4 text-lg font-semibold">No shows match “{getSearchQuery()}”.</p>
+	{/each}
 {:else}
 	<CircularBeatLoader size="large" />
 {/if}

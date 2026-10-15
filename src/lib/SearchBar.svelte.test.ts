@@ -1,39 +1,35 @@
 import { describe, test, expect, beforeEach, afterEach, vi } from 'vitest';
 import '@testing-library/jest-dom/vitest';
-import { fireEvent, render, screen, waitFor } from '@testing-library/svelte';
+import { fireEvent, render, screen } from '@testing-library/svelte';
 import SearchBar from './SearchBar.svelte';
-import {
-	getSearchQuery,
-	getSelectedCategory,
-	setSearchQuery,
-	setSelectedCategory
-} from './sharedState.svelte';
-import { EdmEventInputId } from './Types';
+import { getSearchQuery, setSearchQuery } from './sharedState.svelte';
 
 describe('SearchBar.svelte', () => {
 	beforeEach(() => {
 		vi.useFakeTimers();
 		setSearchQuery('');
-		setSelectedCategory('');
 	});
 
 	afterEach(() => {
 		vi.useRealTimers();
 	});
 
-	test('defaults to searching by artist name', () => {
+	test('defaults to the artist placeholder', () => {
 		render(SearchBar);
 
 		expect(screen.getByPlaceholderText('Search for artists...')).toBeInTheDocument();
-		expect(getSelectedCategory()).toBe(EdmEventInputId.artistName);
+	});
+
+	test('uses the placeholder it is given', () => {
+		render(SearchBar, { props: { placeholder: 'Search for venue...' } });
+
+		expect(screen.getByLabelText('Search')).toHaveAttribute('placeholder', 'Search for venue...');
 	});
 
 	test('debounces the search query by 400ms', async () => {
 		render(SearchBar);
 
-		await fireEvent.input(screen.getByPlaceholderText('Search for artists...'), {
-			target: { value: 'fisher' }
-		});
+		await fireEvent.input(screen.getByLabelText('Search'), { target: { value: 'fisher' } });
 
 		vi.advanceTimersByTime(399);
 		expect(getSearchQuery()).toBe('');
@@ -44,7 +40,7 @@ describe('SearchBar.svelte', () => {
 
 	test('only applies the last query when typing quickly', async () => {
 		render(SearchBar);
-		const input = screen.getByPlaceholderText('Search for artists...');
+		const input = screen.getByLabelText('Search');
 
 		await fireEvent.input(input, { target: { value: 'fis' } });
 		vi.advanceTimersByTime(200);
@@ -54,23 +50,5 @@ describe('SearchBar.svelte', () => {
 
 		vi.advanceTimersByTime(200);
 		expect(getSearchQuery()).toBe('fisher');
-	});
-
-	test.each([
-		{ label: 'Venue', placeholder: 'Search for venue...', category: EdmEventInputId.venue },
-		{ label: 'Date', placeholder: 'Search for dates...', category: EdmEventInputId.inputDate }
-	])('switches to the $label category', async ({ label, placeholder, category }) => {
-		vi.useRealTimers();
-		render(SearchBar);
-
-		await fireEvent.mouseDown(screen.getByRole('button', { name: 'Artist Name' }));
-		await fireEvent.click(await screen.findByText(label));
-
-		expect(screen.getByPlaceholderText(placeholder)).toBeInTheDocument();
-		expect(getSelectedCategory()).toBe(category);
-		// Selecting a category closes the menu
-		await waitFor(() =>
-			expect(document.getElementById(EdmEventInputId.artistName)).not.toBeInTheDocument()
-		);
 	});
 });
