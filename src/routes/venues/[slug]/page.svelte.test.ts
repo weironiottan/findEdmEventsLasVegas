@@ -6,7 +6,7 @@ import { getVenueDetail } from '#lib/browse.js';
 import { getVenueBySlug } from '#lib/venues.js';
 import { testEvent } from '../../../test/testEvents';
 
-const page = vi.hoisted(() => ({ data: {} }));
+const page = vi.hoisted(() => ({ url: new URL('http://localhost/'), data: {} }));
 vi.mock('$app/state', () => ({ page }));
 
 const venueDetail = getVenueDetail(
