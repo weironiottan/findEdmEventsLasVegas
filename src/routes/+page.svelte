@@ -65,7 +65,7 @@
 			{#each tabs as { id, label, count } (id)}
 				<a
 					href="{resolve('/')}?tab={id}"
-					data-sveltekit-noscroll
+					data-sveltekit-reset="false"
 					data-sveltekit-replacestate
 					aria-current={tab === id ? 'page' : undefined}
 					class="{pillClass(tab === id)} px-[22px] text-[17px] tracking-wide"
@@ -99,7 +99,7 @@
 					{#each kinds as { id, label } (id)}
 						<a
 							href="{resolve('/')}?tab=venues&kind={id}"
-							data-sveltekit-noscroll
+							data-sveltekit-reset="false"
 							data-sveltekit-replacestate
 							aria-current={kind === id ? 'page' : undefined}
 							class="{pillClass(kind === id)} px-[22px] text-[15px] tracking-wide"
